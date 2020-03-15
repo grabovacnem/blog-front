@@ -17,7 +17,9 @@
     </div>
 
     <div class="blog-list">
-      <app-blog></app-blog>
+      <ng-container *ngFor="let blogPost of blogPosts">
+        <app-blog [blogPost]="blogPost"></app-blog>
+      </ng-container>
     </div>
   </div>
 </section>
