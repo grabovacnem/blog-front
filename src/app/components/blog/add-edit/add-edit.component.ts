@@ -17,6 +17,7 @@ export class AddEditComponent implements OnInit {
   @Input() editBlog: boolean;
   @Output() editBlogChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() reload: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   formSubmitted = false;
   disableButton = false;
@@ -42,6 +43,10 @@ export class AddEditComponent implements OnInit {
     if (this.editBlog) {
       this.getBlog();
     }
+  }
+
+  closeModal() {
+    this.close.emit(true);
   }
 
   addBlogFunc() {

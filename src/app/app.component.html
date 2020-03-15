@@ -24,4 +24,4 @@
   </div>
 </section>
 
-<app-add-edit *ngIf="addBlog" [(addBlog)]="addBlog" (addBlogChange)="getBlogPosts(); addBlog = false"></app-add-edit>
+<app-add-edit *ngIf="addBlog" [(addBlog)]="addBlog" (addBlogChange)="getBlogPosts(); addBlog = false" (close)="addBlog = false"></app-add-edit>

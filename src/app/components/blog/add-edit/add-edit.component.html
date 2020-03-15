@@ -16,7 +16,7 @@
 
       <div class="actions flex-center">
         <button [disabled]="disableButton" type="submit" class="custom-btn md mr15">Post</button>
-        <button [disabled]="disableButton" class="custom-btn md">Cancel</button>
+        <button [disabled]="disableButton" type="button" (click)="closeModal()" class="custom-btn md">Cancel</button>
       </div>
     </form>
   </div>
