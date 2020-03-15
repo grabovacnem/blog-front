@@ -1,0 +1,21 @@
+header {
+  padding: 20px 40px;
+  background-color: #1D2228;
+
+  span {
+    color: #fff;
+    font-size: 21px;
+    line-height: 21px;
+  }
+
+  .navigation {
+    a {
+      margin-right: 15px;
+      color: #fff;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

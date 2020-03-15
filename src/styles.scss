@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  font-family: Calibri, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.align-center {
+  align-items: center;
+}
+
+input {
+  padding: 5px 15px;
+  width: 200px;
+  border: none;
+  border-radius: 3px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// utility
+
+.mr15 {
+  margin-right: 15px;
+}
