@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AddBlogModel} from "../blog.model";
+import {AddBlogModel, BlogModel, EditBlogModel} from "../blog.model";
 import {Subscription} from "rxjs";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BlogService} from "../blog.service";
@@ -10,8 +10,11 @@ import {BlogService} from "../blog.service";
   styleUrls: ['./add-edit.component.scss']
 })
 export class AddEditComponent implements OnInit {
-  @Input() addBlog;
+  @Input() addBlog: boolean;
   @Output() addBlogChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() blogId: number;
+  @Input() editBlog: boolean;
+  @Output() editBlogChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() reload: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   formSubmitted = false;
@@ -21,6 +24,11 @@ export class AddEditComponent implements OnInit {
 
   blogItemModel: AddBlogModel = new AddBlogModel();
   blogItemModelSubscription: Subscription;
+  editBlogItemModel: EditBlogModel = new EditBlogModel();
+  editBlogItemModelSubscription: Subscription;
+
+  blogModel: BlogModel;
+  blogModelSubscription: Subscription;
 
   constructor(private formBuilder: FormBuilder, private blogService: BlogService) {
     this.blogForm = this.formBuilder.group({
@@ -30,6 +38,47 @@ export class AddEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.editBlog) {
+      this.getBlog();
+    }
+  }
+
+  addBlogFunc() {
+    this.blogItemModelSubscription = this.blogService.addBlog(this.blogItemModel)
+      .subscribe(
+        (response: AddBlogModel) => {
+          this.addBlogChange.emit(false);
+          this.disableButton = false;
+        }, error => {
+          this.disableButton = false;
+        }
+      )
+  }
+
+  getBlog() {
+    this.editBlogItemModelSubscription = this.blogService.blogPost(this.blogId)
+      .subscribe(
+        (response: any) => {
+          this.blogModel = response.resultData;
+          this.blogForm.patchValue({
+            'title': this.blogModel.title,
+            'text': this.blogModel.text
+          });
+        }
+      )
+  }
+
+  editBlogFunc() {
+    this.blogItemModelSubscription = this.blogService.editBlog(this.blogId, this.editBlogItemModel)
+      .subscribe(
+        (response: AddBlogModel) => {
+          this.editBlogChange.emit(false);
+          this.reload.emit(true);
+          this.disableButton = false;
+        }, error => {
+          this.disableButton = false;
+        }
+      )
   }
 
   submitForm() {
@@ -37,16 +86,16 @@ export class AddEditComponent implements OnInit {
     this.disableButton = true;
 
     if (this.blogForm.valid) {
-      this.blogItemModel = this.blogForm.value;
-      this.blogItemModelSubscription = this.blogService.addBlog(this.blogItemModel)
-        .subscribe(
-          (response: AddBlogModel) => {
-            this.addBlogChange.emit(false);
-            this.disableButton = false;
-          }, error => {
-            this.disableButton = false;
-          }
-        )
+      if (this.addBlog) {
+        this.blogItemModel = this.blogForm.value;
+        this.addBlogFunc();
+      }
+
+      if (this.editBlog) {
+        this.editBlogItemModel = this.blogForm.value;
+        this.editBlogItemModel.id = this.blogId;
+        this.editBlogFunc();
+      }
     }
   }
 }

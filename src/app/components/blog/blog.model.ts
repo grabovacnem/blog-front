@@ -11,3 +11,9 @@ export class AddBlogModel {
   public title: string;
   public text: string;
 }
+
+export class EditBlogModel {
+  public id: number;
+  public title: string;
+  public text: string;
+}

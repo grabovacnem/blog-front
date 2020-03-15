@@ -9,7 +9,9 @@ import {BlogService} from "./blog.service";
 })
 export class BlogComponent implements OnInit {
   @Input() blogPost: BlogModel;
-  @Output() deleted: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() emit: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  editBlog = false;
 
   constructor(private blogService: BlogService) { }
 
@@ -17,7 +19,7 @@ export class BlogComponent implements OnInit {
   }
 
   emitTrue() {
-    this.deleted.emit(true);
+    this.emit.emit(true);
   }
 
   deletePost(id) {

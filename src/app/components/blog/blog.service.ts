@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment.localhost";
 import {HttpRequestService} from "../../core/services/http-request.service";
 import {Observable} from "rxjs";
-import {AddBlogModel, BlogModel} from "./blog.model";
+import {AddBlogModel, BlogModel, EditBlogModel} from "./blog.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +19,13 @@ export class BlogService {
 
   addBlog(blog: AddBlogModel): Observable<AddBlogModel> {
     return this.http.post(this.blogUrl, blog);
+  }
+
+  blogPost(id): Observable<BlogModel> {
+    return this.http.get(this.blogUrl + '/' + id);
+  }
+
+  editBlog(id:number, blog: EditBlogModel): Observable<AddBlogModel> {
+    return this.http.put(this.blogUrl + '/' + id, blog);
   }
 }

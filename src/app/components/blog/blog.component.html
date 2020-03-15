@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="blog-item__row-actions">
-      <button class="custom-btn md mr15">Edit</button>
+      <button class="custom-btn md mr15" (click)="editBlog = true">Edit</button>
       <button class="custom-btn md" (click)="deletePost(blogPost.id)">Delete</button>
     </div>
   </div>
@@ -24,3 +24,6 @@
     <div class="img-placeholder img-lrg"></div>
   </div>
 </div>
+
+<app-add-edit *ngIf="editBlog" [(editBlog)]="editBlog" [blogId]="blogPost.id" (reload)="emitTrue()"></app-add-edit>
+
