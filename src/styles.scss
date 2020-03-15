@@ -71,6 +71,18 @@ input, textarea {
   }
 }
 
+.form-control {
+  position: relative;
+
+  .err-msg {
+    position: absolute;
+    bottom: -13px;
+    left: 90px;
+    color: red;
+    font-size:10px;
+  }
+}
+
 .custom-btn {
   background-color: #1D2228;
   color: #fff;

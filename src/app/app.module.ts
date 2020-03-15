@@ -10,6 +10,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import {HttpRequestService} from "./core/services/http-request.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
+import {CommunicationService} from "./core/services/communication.service";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import {ReactiveFormsModule} from "@angular/forms";
         HttpClientModule,
         ReactiveFormsModule
     ],
-  providers: [HttpRequestService],
+  providers: [HttpRequestService, CommunicationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

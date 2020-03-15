@@ -3,8 +3,8 @@
   <div class="section-intro">
     <h1 class="section-title">Welcome to My Blog</h1>
 
-    <div class="app-message">
-      Container for showing application messages
+    <div class="app-message" [ngStyle]="{'background-color': type === 'delete' && message ? '#d54e4a' : (type === 'add' || type === 'update') && message ? '#5bb55b' : 'transparent'}">
+      {{ message }}
     </div>
   </div>
 

@@ -3,6 +3,7 @@ import {AddBlogModel, BlogModel, EditBlogModel} from "../blog.model";
 import {Subscription} from "rxjs";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BlogService} from "../blog.service";
+import {CommunicationService} from "../../../core/services/communication.service";
 
 @Component({
   selector: 'app-add-edit',
@@ -30,7 +31,7 @@ export class AddEditComponent implements OnInit {
   blogModel: BlogModel;
   blogModelSubscription: Subscription;
 
-  constructor(private formBuilder: FormBuilder, private blogService: BlogService) {
+  constructor(private formBuilder: FormBuilder, private blogService: BlogService, private communicationService: CommunicationService) {
     this.blogForm = this.formBuilder.group({
       'title': ['', Validators.required],
       'text': ['', Validators.required]
@@ -49,6 +50,7 @@ export class AddEditComponent implements OnInit {
         (response: AddBlogModel) => {
           this.addBlogChange.emit(false);
           this.disableButton = false;
+          this.communicationService.actionMessage.next('add');
         }, error => {
           this.disableButton = false;
         }
@@ -71,10 +73,11 @@ export class AddEditComponent implements OnInit {
   editBlogFunc() {
     this.blogItemModelSubscription = this.blogService.editBlog(this.blogId, this.editBlogItemModel)
       .subscribe(
-        (response: AddBlogModel) => {
+        (response: EditBlogModel) => {
           this.editBlogChange.emit(false);
           this.reload.emit(true);
           this.disableButton = false;
+          this.communicationService.actionMessage.next('update');
         }, error => {
           this.disableButton = false;
         }
@@ -83,9 +86,10 @@ export class AddEditComponent implements OnInit {
 
   submitForm() {
     this.formSubmitted = true;
-    this.disableButton = true;
 
     if (this.blogForm.valid) {
+      this.disableButton = true;
+
       if (this.addBlog) {
         this.blogItemModel = this.blogForm.value;
         this.addBlogFunc();

@@ -8,6 +8,8 @@
       padding: 10px 25px;
       background: #eee;
       margin-bottom: 25px;
+      min-height: 40px;
+      color: #fff;
     }
   }
 
@@ -26,6 +28,33 @@
 
     .blog-list {
       flex-basis: calc(80% - 20px);
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .section-container {
+
+    .section-intro {
+      margin-left: 0;
+    }
+
+    .section-content {
+
+      .add-post-wrapper {
+        flex-basis: 100%;
+        margin-bottom: 20px;
+      }
+
+      .blog-categories {
+        flex-basis: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+
+      .blog-list {
+        flex-basis: 100%;
+      }
     }
   }
 }

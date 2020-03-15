@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {BlogModel} from "./blog.model";
 import {BlogService} from "./blog.service";
+import {CommunicationService} from "../../core/services/communication.service";
 
 @Component({
   selector: 'app-blog',
@@ -13,7 +14,7 @@ export class BlogComponent implements OnInit {
 
   editBlog = false;
 
-  constructor(private blogService: BlogService) { }
+  constructor(private blogService: BlogService, private communicationService: CommunicationService) { }
 
   ngOnInit(): void {
   }
@@ -27,6 +28,7 @@ export class BlogComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.emitTrue();
+          this.communicationService.actionMessage.next('delete');
         }
       )
   }

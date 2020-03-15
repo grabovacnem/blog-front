@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AppService} from "./app.service";
 import {BlogModel} from "./components/blog/blog.model";
 import {Subscription} from "rxjs";
+import {CommunicationService} from "./core/services/communication.service";
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,20 @@ export class AppComponent implements OnInit{
   blogPosts: BlogModel;
   blogPostsSubscription: Subscription;
   addBlog = false;
+  message: string = '';
+  type: string;
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService, private communicationService: CommunicationService) {
+    this.communicationService.actionMessage
+      .subscribe((response: any) => {
+            this.type = response;
+            this.message = response === 'delete' ? 'Blog post deleted.' : response === 'add' ? 'Blog post added.' : 'Blog post updated.';
+
+            setTimeout(() => {
+              this.message = ''
+            }, 2000)
+        }
+      );
   }
 
   ngOnInit(){

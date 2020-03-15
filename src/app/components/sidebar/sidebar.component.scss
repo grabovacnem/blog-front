@@ -5,3 +5,19 @@
     color: #333;
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .sidebar-content {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 15px 25px;
+
+    h2 {
+      width: 100%;
+      text-align: center;
+    }
+    a {
+      margin-right: 15px;
+    }
+  }
+}
