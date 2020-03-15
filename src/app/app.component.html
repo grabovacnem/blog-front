@@ -10,7 +10,7 @@
 
   <div class="flex section-content">
     <div class="flex-end add-post-wrapper">
-      <button class="custom-btn lrg" type="button">Add post</button>
+      <button class="custom-btn lrg" type="button" (click)="addBlog = true">Add post</button>
     </div>
     <div class="blog-categories">
       <app-sidebar></app-sidebar>
@@ -23,3 +23,5 @@
     </div>
   </div>
 </section>
+
+<app-add-edit *ngIf="addBlog" [(addBlog)]="addBlog" (addBlogChange)="getBlogPosts(); addBlog = false"></app-add-edit>

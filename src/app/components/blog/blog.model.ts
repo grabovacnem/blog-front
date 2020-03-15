@@ -6,3 +6,8 @@ export class BlogModel {
   public text: string;
   public categoryId: number;
 }
+
+export class AddBlogModel {
+  public title: string;
+  public text: string;
+}

@@ -2,19 +2,19 @@
   <div class="add-edit-blog">
     <h2>Add/Edit blog post</h2>
 
-    <form>
+    <form [formGroup]="blogForm" (ngSubmit)="submitForm()">
       <div class="form-control flex align-center mb15">
         <label class="mr15" for="title">Title</label>
-        <input type="text" id="title">
+        <input type="text" id="title" formControlName="title">
       </div>
       <div class="form-control flex align-center mb25">
         <label class="mr15" for="desc">Text</label>
-        <textarea id="desc" cols="30" rows="10"></textarea>
+        <textarea id="desc" cols="30" rows="10" formControlName="text"></textarea>
       </div>
 
       <div class="actions flex-center">
-        <button class="custom-btn md mr15">Post</button>
-        <button class="custom-btn md">Cancel</button>
+        <button [disabled]="disableButton" type="submit" class="custom-btn md mr15">Post</button>
+        <button [disabled]="disableButton" class="custom-btn md">Cancel</button>
       </div>
     </form>
   </div>

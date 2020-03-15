@@ -9,18 +9,22 @@ import {BlogService} from "./blog.service";
 })
 export class BlogComponent implements OnInit {
   @Input() blogPost: BlogModel;
-  @Output() deleted = new EventEmitter();
+  @Output() deleted: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private blogService: BlogService) { }
 
   ngOnInit(): void {
   }
 
+  emitTrue() {
+    this.deleted.emit(true);
+  }
+
   deletePost(id) {
     this.blogService.deleteBlog(id)
       .subscribe(
         (response: any) => {
-          this.deleted.emit(true);
+          this.emitTrue();
         }
       )
   }

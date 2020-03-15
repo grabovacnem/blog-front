@@ -12,6 +12,7 @@ export class AppComponent implements OnInit{
   title = 'blog';
   blogPosts: BlogModel;
   blogPostsSubscription: Subscription;
+  addBlog = false;
 
   constructor(private appService: AppService) {
   }
