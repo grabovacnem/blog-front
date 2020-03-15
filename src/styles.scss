@@ -8,6 +8,7 @@ body {
   padding: 0;
 }
 
+// flex classes
 .flex {
   display: flex;
 }
@@ -22,10 +23,16 @@ body {
   justify-content: flex-end;
 }
 
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
 .align-center {
   align-items: center;
 }
 
+// form elements
 input {
   padding: 5px 15px;
   width: 200px;
@@ -34,6 +41,37 @@ input {
 
   &:focus {
     outline: none;
+  }
+}
+
+.custom-btn {
+  background-color: #1D2228;
+  color: #fff;
+  border: none;
+  height: 30px;
+  cursor: pointer;
+  transition: 200ms background-color;
+
+  &:hover {
+    background-color: darken(#1D2228, 10%);
+    transition: 200ms background-color;
+  }
+
+  &:disabled {
+    background-color: lighten(#1D2228, 50%);
+    cursor: no-drop;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &.md {
+    width: 120px;
+  }
+
+  &.lrg {
+    width: 200px;
   }
 }
 

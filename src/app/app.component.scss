@@ -1,0 +1,31 @@
+.section-container {
+  padding: 0 40px;
+
+  .section-intro {
+    margin-left: calc(20% + 20px);
+
+    .app-message {
+      padding: 10px 15px;
+      background: #eee;
+      margin-bottom: 25px;
+    }
+  }
+
+  .section-content {
+    flex-wrap: wrap;
+
+    .add-post-wrapper {
+      flex-basis: 100%;
+      margin-bottom: 20px;
+    }
+
+    .blog-categories {
+      flex-basis: 20%;
+      margin-right: 20px;
+    }
+
+    .blog-list {
+      flex-basis: calc(80% - 20px);
+    }
+  }
+}
