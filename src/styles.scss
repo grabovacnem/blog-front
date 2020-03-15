@@ -60,7 +60,7 @@ h2 {
 }
 
 // form elements
-input {
+input, textarea {
   padding: 5px 15px;
   width: 200px;
   border: none;
@@ -106,4 +106,12 @@ input {
 
 .mr15 {
   margin-right: 15px;
+}
+
+.mb15 {
+  margin-bottom: 15px;
+}
+
+.mb25 {
+  margin-bottom: 25px;
 }
