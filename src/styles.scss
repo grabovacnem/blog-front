@@ -8,6 +8,28 @@ body {
   padding: 0;
 }
 
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+.img-placeholder {
+  background-color: #eee;
+
+  &.img-md {
+    width: 80px;
+    height: 80px;
+  }
+
+  &.img-lrg {
+    width: 100px;
+    height: 100px;
+  }
+}
+
 // flex classes
 .flex {
   display: flex;
@@ -21,6 +43,11 @@ body {
 .flex-end {
   display: flex;
   justify-content: flex-end;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
 }
 
 .flex-column {
