@@ -18,7 +18,7 @@
 
     <div class="blog-list">
       <ng-container *ngFor="let blogPost of blogPosts">
-        <app-blog [blogPost]="blogPost"></app-blog>
+        <app-blog [blogPost]="blogPost" (deleted)="getBlogPosts()"></app-blog>
       </ng-container>
     </div>
   </div>
